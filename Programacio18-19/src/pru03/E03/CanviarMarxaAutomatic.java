@@ -1,4 +1,4 @@
-package pru03.E02;
+package pru03.E03;
 
 public enum CanviarMarxaAutomatic {
 	F,

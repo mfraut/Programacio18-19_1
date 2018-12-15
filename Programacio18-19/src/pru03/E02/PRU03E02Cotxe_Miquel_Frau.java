@@ -26,7 +26,7 @@ public class PRU03E02Cotxe_Miquel_Frau extends CotxeAbstracte implements Interfa
 
 	public int getRevolucions() {
 		if (comprovaMotor().equals(EstatsMotorCotxe.EnMarxa)) {
-			return (int) ((Math.random() * ((6500 - 1) + 1)) + 6500);
+			return (int) (((Math.random()*6500) + 1));
 		} else {
 			return 0;
 		}

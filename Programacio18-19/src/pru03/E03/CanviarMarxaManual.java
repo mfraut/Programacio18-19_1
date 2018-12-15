@@ -1,11 +1,11 @@
-package pru03.E02;
+package pru03.E03;
 
 public enum CanviarMarxaManual {
 	PRIMERA,
-	SEGUNDA,
+	SEGONA,
 	TERCERA,
-	CUARTA,
-	QUINTA,
-	SEXTA,
+	QUARTA,
+	CINQUENA,
+	SISENA,
 	R;
 }

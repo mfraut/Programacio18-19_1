@@ -16,9 +16,6 @@ public class PRU03E03Cotxe_Miquel_Frau extends CotxeAbstracte implements Interfa
 		this.marca = marca;
 		this.model = model;
 		this.tipuscanvi = tipuscanvi;
-		
-		String[] marxes_automatic = {"R", "N", "F"};
-		String[] marxes_manual = {"Primera", "Segona", "Tercera", "Quarta", "Cinquena", "Sexta", "R"};
 	}
 
 	public void arrancarMotor() throws Exception {
@@ -152,7 +149,7 @@ public class PRU03E03Cotxe_Miquel_Frau extends CotxeAbstracte implements Interfa
 				if (ComprovarMarxaManual() == -1) {
 					marxa_manual = CanviarMarxaManual.PRIMERA;
 				}
-				if (ComprovarMarxaAutomatic() == 0) {
+				else if (ComprovarMarxaManual() == 0) {
 					marxa_manual = CanviarMarxaManual.SEGONA;
 				}
 				else if (ComprovarMarxaManual() == 1) {
@@ -186,7 +183,7 @@ public class PRU03E03Cotxe_Miquel_Frau extends CotxeAbstracte implements Interfa
 				if (ComprovarMarxaManual() == 5) {
 					marxa_manual = CanviarMarxaManual.CINQUENA;
 				}
-				if (ComprovarMarxaAutomatic() == 4) {
+				if (ComprovarMarxaManual() == 4) {
 					marxa_manual = CanviarMarxaManual.QUARTA;
 				}
 				else if (ComprovarMarxaManual() == 3) {
@@ -213,33 +210,6 @@ public class PRU03E03Cotxe_Miquel_Frau extends CotxeAbstracte implements Interfa
 			throw new Exception("Estàs intentant fer un canvi de marxa manual per a un cotxe automàtic :facepalm:");
 		}
 	}
-	
-	
-//	public void CanviarMarxaAutomatic(int canviarmarxa) throws Exception {
-//		if (this.tipuscanvi.equals(TipusCanvi.CanviAutomatic)) {
-//			if (motor.equals(EstatsMotorCotxe.EnMarxa)) {
-//				switch (canviarmarxa) {
-//					case 1:	if (marxa_auto.equals(CanviarMarxaAutomatic.F)){
-								//throw new Exception("La marcha está en F ya, no puedes cambiarla a la que ya está")
-								//}
-//								else {
-//									this.marxa_auto = CanviarMarxaAutomatic.F;
-//								}
-//							break;
-//					case 2: this.marxa_auto = CanviarMarxaAutomatic.N;
-//							break;
-//					case 3: this.marxa_auto = CanviarMarxaAutomatic.R;
-//							break;
-//					default: throw new Exception ("No has introduit cap marxa correcta. A conseqüència d'això, has romput el cotxe. Enhorabona 												  mestre. Crack.");
-//				}
-//			} else {
-//				throw new Exception(
-//						"Estàs intentant canviar de marxa amb el cotxe apagat. Que escolta, ho pots fer, però serveix per al	mateix que tú. Per res");
-//			}
-//		} else {
-//			throw new Exception("Estàs intentant fer un canvi de marxa automàtic quan el cotxe es manual :facepalm:");
-//		}
-//	}	public void CanviarMarxaManual() {
 
 
 }

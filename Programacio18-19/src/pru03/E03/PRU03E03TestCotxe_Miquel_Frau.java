@@ -25,12 +25,12 @@ public class PRU03E03TestCotxe_Miquel_Frau {
 			cotxe1.PujarMarxaManual();
 		}
 		
-		System.out.println(cotxe2.getMarxaManual());
+		System.out.println(cotxe1.getMarxaManual());
 		
 		for (int i = 5; i>0; i--){
 			cotxe1.BaixarMarxaManual();
 		}
-		System.out.println(cotxe2.getMarxaManual());
+		System.out.println(cotxe1.getMarxaManual());
 		
 	}
 

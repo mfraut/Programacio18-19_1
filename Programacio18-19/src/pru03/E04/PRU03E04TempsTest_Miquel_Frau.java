@@ -8,7 +8,7 @@ public class PRU03E04TempsTest_Miquel_Frau {
 		System.out.println(temps1.toString());
 
 		System.out.println(temps1.SumaTemps());
-		
+
 		System.out.println(temps1.toString());
 
 		System.out.println(temps1.RestaTemps());

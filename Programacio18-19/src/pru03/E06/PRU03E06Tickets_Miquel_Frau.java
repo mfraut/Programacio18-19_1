@@ -25,7 +25,8 @@ public class PRU03E06Tickets_Miquel_Frau {
         seleccion = sc.nextInt();
 
         switch(seleccion){
-            case 1:         do {
+            case 1:         repetir_entradas_libres = true;
+                            do {
                             System.out.println("");
                             System.out.println("A continuació, seleccioni de quina zona vol mostrar el nombre d'entrades disponibles.");
                             System.out.println("1. Platea.");
@@ -47,7 +48,8 @@ public class PRU03E06Tickets_Miquel_Frau {
                                 default: System.out.println("No has introduit cap opció correcta. Per favor, introdugui una opció correcta.");
                             }
                             } while (repetir_entradas_libres);
-            case 2:         do {
+            case 2:             repetir_venta_entradas = true;
+                                do {
                                 System.out.println("");
                                 System.out.println("A continuació, seleccioni de quina zona vol comprar les entrades.");
                                 System.out.println("1. Platea.");

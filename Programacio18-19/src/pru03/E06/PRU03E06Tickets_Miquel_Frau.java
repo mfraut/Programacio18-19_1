@@ -76,6 +76,8 @@ public class PRU03E06Tickets_Miquel_Frau {
                                 }
                             } while(repetir_venta_entradas);
             case 3: repetir = false;
+                              break;
+            default: System.out.println("No has introduit cap opció correcta. Per favor, introdugui una opció correcta.");
         }
 
         } while (repetir);

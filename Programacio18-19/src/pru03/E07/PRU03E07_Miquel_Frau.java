@@ -3,13 +3,32 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PRU03E07_Miquel_Frau {
-    public static void main (String[] args){
+    public static void main (String[] args) throws Exception{
         Scanner sc = new Scanner(System.in);
 
         boolean repetir = true;
+        boolean repetir_alta_codi;
+        boolean repetir_alta_desc;
+        boolean flag_repetir_alta_desc;
+        boolean repetir_alta_stock;
+        boolean repetir_borrar;
+        boolean flag_borrado;
+        boolean flag_encontrado;
+        boolean repetir_modificar;
+        boolean flag_modificado;
+        boolean flag_repetir_borrar;
+        boolean repetir_seleccio_modificar;
         int seleccio;
+        String codi_objeto;
+        String desc_objeto;
+        String codi_objeto_retirar;
+        String codi_objeto_modificar;
+        double preuCompra_objeto;
+        double preuVenda_objeto;
+        int stock;
+        int seleccio_modificar;
 
-        ArrayList articles = new ArrayList<Article>(Article);
+        ArrayList<Article> articles = new ArrayList<Article>();
         do{
             System.out.println("Benvingut a StorageManagement V1.0. Per favor, trii una de les opcions que es mostren a continuacio:");
             System.out.println("1. Llistat.");
@@ -28,11 +47,208 @@ public class PRU03E07_Miquel_Frau {
                             System.out.print(articles.get(i) + "\t");
                         }
                         break;
-                case 2: Article objeto;
-                        articles.add(objeto);
-                case 3:
+                case 2: repetir_alta_codi = true;
+                        repetir_alta_desc = true;
+                        repetir_alta_stock = true;
+                        flag_repetir_alta_desc = true;
+                        do {
+                            System.out.println("Per favor, introdugui el codi de l'article.\n");
+                            codi_objeto = sc.nextLine();
+                            for (int i = 0; i<articles.size(); i++) {
+                                if (articles.get(i).getCodi().equals(codi_objeto)) {
+                                    System.out.print("Ha introduit un codi que ja pertany a un article. ");
+                                }
+                                else if (articles.size()-(i+1) == 0){
+                                    repetir_alta_codi = false;
+                                }
+                            }
+                        } while(repetir_alta_codi);
+                        System.out.print("\nHa introduit: "+codi_objeto+" com a codi satisfactòriament. ");
+                        do {
+                            System.out.print("Per favor, introdugui la descripció de l'article.\n");
+                            desc_objeto = sc.nextLine();
+                            for (int i = 0; i<articles.size(); i++) {
+                                if (articles.get(i).getDescripcio().equals(desc_objeto)) {
+                                    System.out.print("Ha introduit una descripció que ja pertany a un article. És això correcte? (S/N)");
+                                    String desc_objeto_check = sc.nextLine();
+                                    do {
+                                    if (desc_objeto_check.equals("S")){
+                                        repetir_alta_desc = false;
+                                        flag_repetir_alta_desc = false;
+                                    } else if (desc_objeto_check.equals("N")){
+                                        flag_repetir_alta_desc = false;
+                                    }
+                                    else {
+                                        flag_repetir_alta_desc = true;
+                                        System.out.println("No t'he entés. Per favor, torni a introduir si les dades son correctes (S) o no ho son (N).");
+                                        desc_objeto_check = sc.nextLine();
+                                    }
+                                } while (flag_repetir_alta_desc);
+                                }
+                                else if (articles.size()-(i+1) == 0){
+                                    repetir_alta_desc = false;
+                                }
+                            }
+                        } while(repetir_alta_desc);
+                        System.out.print("\nHa introduit: "+desc_objeto+" com a descripció satisfactòriament. ");
+                        
+                        System.out.print("Per favor, introdugui el preu de compra de l'article.\n");
+                        preuCompra_objeto = sc.nextDouble();
+                        System.out.print("\nHas introduit: "+preuCompra_objeto+" com a preu de compra satisfactòriament. ");
+                        
+                        System.out.print("Per favor, introdugui el preu de venda de l'article.\n");
+                        preuVenda_objeto = sc.nextDouble();
+                        System.out.print("\nHas introduit: "+preuVenda_objeto+" com a preu de compra satisfactòriament. ");
+                        
+                        do {
+                            System.out.print("Per favor, introdugui l'stock de l'article.\n");
+                            stock = sc.nextInt();
+                            if (stock <= 0) {
+                                System.out.print("Has introduit un preu de compra negatiu. No s'accepten valors negatius. ");
+                            }
+                            else {
+                                repetir_alta_stock = false;
+                            }
+                        } while(repetir_alta_stock);
+                        articles.add(new Article());
+                        for (int i = 0; i<articles.size(); i++) {
+                            if (articles.get(i).getCodi().equals("LLIURE")) {
+                                articles.get(i).setCodi(codi_objeto);
+                                articles.get(i).setDescripcio(desc_objeto);
+                                articles.get(i).setPreuDeCompra(preuCompra_objeto);
+                                articles.get(i).setPreuDeVenda(preuVenda_objeto);
+                                articles.get(i).setStock(stock);
+                            }
+                        }
+                        break;                        
+                case 3: 
+                        repetir_borrar = true;
+                        flag_borrado = false;
+                        flag_repetir_borrar = true;
+                        
+                        do {
+                            System.out.println("Introdugui el codi de l'article que vol retirar.");
+                            codi_objeto_retirar = sc.nextLine();
+                            for (int i = 0; i<articles.size() || flag_borrado; i++) {
+                                if (articles.get(i).getCodi().equals(codi_objeto_retirar)) {
+                                articles.remove(i);
+                                flag_borrado = true;
+                                }
+                            }
+                            if (flag_borrado) {
+                                System.out.println("L'article s'ha borrat amb èxit.");
+                            }
+                            else {
+                                System.out.print("No s'ha trobat l'article que està cercant. Vol tornar a cercar? (S/N)");
+                                    String borrar_check = sc.nextLine();
+                                do {
+                                    if (borrar_check.equals("S")){
+                                        flag_repetir_alta_desc = false;
+                                    } else if (borrar_check.equals("N")){
+                                        repetir_alta_desc = false;
+                                        flag_repetir_alta_desc = false;
+                                    }
+                                    else {
+                                        flag_repetir_alta_desc = true;
+                                        System.out.println("No t'he entés. Per favor, torni a introduir si les dades son correctes (S) o no ho son (N).");
+                                        borrar_check = sc.nextLine();
+                                    }
+                                } while (flag_repetir_borrar);
+                            }
+                        } while (repetir_borrar);
+                        break;
                 case 4:
-                case 5:
+                        repetir_modificar = true;
+                        flag_modificado = false;
+                        repetir_seleccio_modificar = true;
+
+                        do {
+                            System.out.println("Introdugui el codi de l'article que vol modificar.");
+                            codi_objeto_modificar = sc.nextLine();
+                            for (int i = 0; i<articles.size() || flag_modificado; i++) {
+                                if (articles.get(i).getCodi().equals(codi_objeto_modificar)) {
+                                flag_modificado = true;
+                                do { 
+                                    boolean repetir_modificar_nou;
+                                    System.out.print("\nSeleccioni el que vulgui modificar de la seguent llista: \n1. Codi\n2. Descripcio\n3. Preu de compra\n4. Preu de venda\n5. Sortir");
+                                seleccio_modificar = sc.nextInt();
+    
+                                switch(seleccio_modificar){
+                                    case 1: 
+                                    repetir_modificar_nou = true;
+                                    do {
+                                    String modificar_nou_codi;
+                                    boolean flag_modificado_nou = false;
+                                            System.out.print("\nPer favor, introdugui el nou codi.");
+                                            modificar_nou_codi = sc.nextLine();
+                                            for (int a = 0; a<articles.size() || flag_modificado_nou; a++ ){
+                                                if(articles.get(a).getCodi().equals(modificar_nou_codi)){
+                                                    System.out.println("Ja hi ha un article amb aquest codi.");
+                                                    flag_modificado_nou = true;
+                                                }
+                                                if (!(flag_modificado_nou)){
+                                                    articles.get(a).setCodi(modificar_nou_codi);
+                                                    repetir_modificar_nou = false;
+                                                }
+                                            }
+                                        } while(repetir_modificar_nou);
+                                        repetir_seleccio_modificar = false;
+                                            break;
+                                    case 2: 
+                                            System.out.println("Per favor, introdugui la nova descripció.");
+                                            String modificar_nou_desc = sc.nextLine();
+                                            articles.get(i).setDescripcio(modificar_nou_desc);
+                                            repetir_seleccio_modificar = false;
+                                            break;
+                                    case 3: 
+                                            System.out.println("Per favor, introdugui el nou preu de compra");
+                                            double modificar_nou_preuCompra = sc.nextDouble();
+                                            articles.get(i).setPreuDeCompra(modificar_nou_preuCompra);
+                                            repetir_seleccio_modificar = false;
+                                            break;
+                                    case 4: 
+                                            System.out.println("Per favor, introdugui el nou preu de compra");
+                                            double modificar_nou_preuVenda = sc.nextDouble();
+                                            articles.get(i).setPreuDeVenda(modificar_nou_preuVenda);
+                                            repetir_seleccio_modificar = false;
+                                            break;
+                                    case 5: 
+                                            repetir_seleccio_modificar = false;
+                                            break;
+                                    default: System.out.println("No has introduit cap opció correcta");
+                                }
+                                } while(repetir_seleccio_modificar);
+                                }
+                            }
+                            if (!(flag_modificado)) {
+                                boolean flag_repetir_modificar = true;
+                                System.out.println("No s'ha trobat l'article que vols modificar. Vols tornar a intentar amb un altre codi? (S/N)");
+                                String modificar_check = sc.nextLine();
+                                do {
+                                    if (modificar_check.equals("S")){
+                                        flag_repetir_modificar = false;
+                                    } else if (modificar_check.equals("N")){
+                                        repetir_modificar = false;
+                                        flag_repetir_modificar = false;
+                                    }
+                                    else {
+                                        flag_repetir_modificar = true;
+                                        System.out.println("No t'he entés. Per favor, torni a introduir si les dades son correctes (S) o no ho son (N).");
+                                        modificar_check = sc.nextLine();
+                                    }
+                                } while (flag_repetir_modificar);
+                            }
+                        } while (repetir_modificar);
+                break;
+                case 5: 
+                        boolean flag_entrada = true;
+                        System.out.println("Introdueix el codi de l'objecte al qual li ha entrat mercaderia.");
+                        String codi_entrada_mercaderia = sc.nextLine();
+                        for (int i = 0; i<articles.size() || flag_entrada; i++) {
+                            if (articles.get(i).getCodi().equals(codi_entrada_mercaderia))  {
+                                flag_entrada = true;
+                            }
+                        }
                 case 6:
                 case 7:
                 default: 

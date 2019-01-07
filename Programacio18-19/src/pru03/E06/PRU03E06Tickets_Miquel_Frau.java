@@ -37,17 +37,21 @@ public class PRU03E06Tickets_Miquel_Frau {
                             seleccion_entradas_libres = sc.nextInt();
                             
                             switch(seleccion_entradas_libres) {
-                                case 1: platea.getEntradesPerVendre();
+                                case 1: System.out.println(platea.getEntradesPerVendre());
+                                		repetir_entradas_libres = false;
                                         break;
-                                case 2: amfiteatre.getEntradesPerVendre();
+                                case 2: System.out.println(amfiteatre.getEntradesPerVendre());
+                                		repetir_entradas_libres = false;
                                         break;
-                                case 3: vip.getEntradesPerVendre();
+                                case 3: System.out.println(vip.getEntradesPerVendre());
+                                		repetir_entradas_libres = false;
                                         break;
                                 case 4: repetir_entradas_libres = false;
                                         break;                                
                                 default: System.out.println("No has introduit cap opció correcta. Per favor, introdugui una opció correcta.");
                             }
                             } while (repetir_entradas_libres);
+                            break;
             case 2:             repetir_venta_entradas = true;
                                 do {
                                 System.out.println("");
@@ -63,20 +67,24 @@ public class PRU03E06Tickets_Miquel_Frau {
                                     case 1: System.out.println("Per favor, introdugui la quantitat de tickets que vol comprar.");
                                             compra_entradas = sc.nextInt();
                                             platea.vendre(compra_entradas);
+                                            repetir_venta_entradas = false;
                                             break;
                                     case 2: System.out.println("Per favor, introdugui la quantitat de tickets que vol comprar.");
                                             compra_entradas = sc.nextInt();
                                             amfiteatre.vendre(compra_entradas);
+                                            repetir_venta_entradas = false;
                                             break;
                                     case 3: System.out.println("Per favor, introdugui la quantitat de tickets que vol comprar.");
                                             compra_entradas = sc.nextInt();
                                             vip.vendre(compra_entradas);
+                                            repetir_venta_entradas = false;
                                             break;
                                     case 4: repetir_venta_entradas = false;
                                             break;
                                     default: System.out.println("No has introduit cap opció correcta. Per favor, introdugui una opció correcta.");
                                 }
                             } while(repetir_venta_entradas);
+                              break;
             case 3: repetir = false;
                               break;
             default: System.out.println("No has introduit cap opció correcta. Per favor, introdugui una opció correcta.");

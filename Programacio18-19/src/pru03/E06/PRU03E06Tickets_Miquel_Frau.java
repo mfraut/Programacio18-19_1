@@ -66,17 +66,32 @@ public class PRU03E06Tickets_Miquel_Frau {
                                 switch(seleccion_venta_entradas) {
                                     case 1: System.out.println("Per favor, introdugui la quantitat de tickets que vol comprar.");
                                             compra_entradas = sc.nextInt();
-                                            platea.vendre(compra_entradas);
+                                            if (compra_entradas > 0) {
+                                            	platea.vendre(compra_entradas);	
+                                            }
+                                            else {
+                                            	System.out.println("Error: Has introduit un nombre negatiu o has intentat comprar 0 entrades.");
+                                            }
                                             repetir_venta_entradas = false;
                                             break;
                                     case 2: System.out.println("Per favor, introdugui la quantitat de tickets que vol comprar.");
                                             compra_entradas = sc.nextInt();
-                                            amfiteatre.vendre(compra_entradas);
+                                            if (compra_entradas > 0) {
+                                            	amfiteatre.vendre(compra_entradas);	
+                                            }
+                                            else {
+                                            	System.out.println("Error: Has introduit un nombre negatiu o has intentat comprar 0 entrades.");
+                                            }
                                             repetir_venta_entradas = false;
                                             break;
                                     case 3: System.out.println("Per favor, introdugui la quantitat de tickets que vol comprar.");
                                             compra_entradas = sc.nextInt();
-                                            vip.vendre(compra_entradas);
+                                            if (compra_entradas > 0) {
+                                            	vip.vendre(compra_entradas);	
+                                            }
+                                            else {
+                                            	System.out.println("Error: Has introduit un nombre negatiu o has intentat comprar 0 entrades.");
+                                            }
                                             repetir_venta_entradas = false;
                                             break;
                                     case 4: repetir_venta_entradas = false;

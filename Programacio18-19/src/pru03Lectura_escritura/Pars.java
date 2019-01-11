@@ -6,7 +6,7 @@ public class Pars {
 
 	public static void main(String[] args) {
 		try {
-			BufferedWriter bw = new BufferedWriter(new FileWriter("pars.dat"));
+			BufferedWriter bw = new BufferedWriter(new FileWriter(args[0]));
 			
 			for (int i = 2; i<=500; i = i +2) {
 				bw.write(i+"\n");

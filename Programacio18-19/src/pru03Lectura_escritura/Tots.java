@@ -8,10 +8,10 @@ public class Tots {
 
 	public static void main(String[] args) {
 		try {
-			BufferedReader br_pars = new BufferedReader(new FileReader("C:\\Temp\\pars.dat"));
-			BufferedReader br_senars = new BufferedReader(new FileReader("C:\\Temp\\senars.dat"));
-			BufferedWriter bw_tots = new BufferedWriter(new FileWriter("C:\\Temp\\tots.dat"));
-			
+			BufferedReader br_pars = new BufferedReader(new FileReader(args[0]));
+			BufferedReader br_senars = new BufferedReader(new FileReader(args[1]));
+			BufferedWriter bw_tots = new BufferedWriter(new FileWriter(args[2]));
+			System.out.println(args[0]+ args[1]+ args[2]);
 			String llegir_pars = "";
 			String llegir_senars = "";
 			

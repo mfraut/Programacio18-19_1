@@ -42,9 +42,14 @@ public class PRU03E07_Miquel_Frau {
 			seleccio = sc.nextInt();
 
 			switch(seleccio) {
-			case 1: 
+			case 1:
+				if (articles.size() == 0) {
+					System.out.println("No hi ha cap entrada per mostrar.");
+				}
+				else {
 				for (int i = 0; i<articles.size(); i++){
 					System.out.print(articles.get(i) + "\t");
+				}
 				}
 				break;
 			case 2: repetir_alta_codi = true;
@@ -70,7 +75,7 @@ public class PRU03E07_Miquel_Frau {
 					repetir_alta_codi = false;
 				}
 			} while(repetir_alta_codi);
-			System.out.print("\nHa introduit: "+codi_objeto+" com a codi satisfactòriament. ");
+			System.out.print("\nHa introduit: \""+codi_objeto+"\" com a codi satisfactòriament. ");
 			do {
 				flag_misma_desc = false;
 				System.out.print("Per favor, introdugui la descripció de l'article.\n");
@@ -99,13 +104,13 @@ public class PRU03E07_Miquel_Frau {
 					repetir_alta_desc = false;
 				}
 			} while(repetir_alta_desc);
-			System.out.print("\nHa introduit: "+desc_objeto+" com a descripció satisfactòriament. ");
+			System.out.print("\nHa introduit: \""+desc_objeto+"\" com a descripció satisfactòriament. ");
 
 			do {
 				System.out.print("Per favor, introdugui el preu de compra de l'article.\n");
 				preuCompra_objeto = sc.nextDouble();
 				if (preuCompra_objeto >= 0){
-					System.out.print("\nHas introduit: "+preuCompra_objeto+" com a preu de compra satisfactòriament. ");
+					System.out.print("\nHas introduit: \""+preuCompra_objeto+"\" com a preu de compra satisfactòriament. ");
 					repetir_alta_preuCompra = false;
 				}
 				else {
@@ -117,7 +122,7 @@ public class PRU03E07_Miquel_Frau {
 				System.out.print("Per favor, introdugui el preu de venda de l'article.\n");
 				preuVenda_objeto = sc.nextDouble();
 				if (preuVenda_objeto >= 0) {
-					System.out.print("\nHas introduit: "+preuVenda_objeto+" com a preu de compra satisfactòriament. ");
+					System.out.print("\nHas introduit: \""+preuVenda_objeto+"\" com a preu de compra satisfactòriament. ");
 					repetir_alta_preuVenda = false;
 				}
 				else {

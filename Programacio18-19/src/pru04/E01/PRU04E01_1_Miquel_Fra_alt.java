@@ -1,5 +1,3 @@
-package pru04.E01;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -9,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class PRU04E01_1_Miquel_Frau {
+public class PRU04E01_1_Miquel_Fra_alt {
 
 	public static void main(String[] args) {
 		try {

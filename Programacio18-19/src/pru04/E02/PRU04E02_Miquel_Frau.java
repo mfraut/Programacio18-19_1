@@ -12,7 +12,9 @@ public class PRU04E02_Miquel_Frau {
 		String palabra = "";
 		
 		for (int i = posicio_inicial; i <= posicio_final;  i++) {
-			if ()
+			if (linea.charAt(i) != 32) {
+				palabra += linea.charAt(i);
+			}
 		}
 		return palabra;
 	}

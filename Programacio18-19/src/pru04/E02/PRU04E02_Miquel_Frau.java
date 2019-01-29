@@ -21,7 +21,7 @@ public class PRU04E02_Miquel_Frau {
 		return palabra;
 	}
 	
-	//MÃ¨tode que escriu a l'arxiu final la linea separada per ";" i amb un espai al final.
+	//Mètode que retorna la linea separada per ";" i amb un bot de linia al final.
 	
 	
 	public static String escriureLinea(String emp_no, String birth_date, String first_name, String last_name, String gender, String hire_date) {
@@ -38,7 +38,9 @@ public class PRU04E02_Miquel_Frau {
 			
 			String linea, emp_no, birth_date, first_name, last_name, gender, hire_date;
 			
-			//Revisa la lin
+			/* Revisa la linia escrita al fitxer una vegada i li afegeix un espai al final per evitar excepció OutOfBounds. 
+			 * S'emmagatzema a cada variable la paraula corresponent a cada tros de linia. Una vegada fet, escriu a l'arxiu final
+			 * amb l'ús del mètode escriureLinea. */
 		do {
 			linea = br.readLine();
 			if (linea != null) {

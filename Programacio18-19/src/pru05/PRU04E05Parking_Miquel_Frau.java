@@ -12,8 +12,8 @@ public class PRU04E05Parking_Miquel_Frau {
 		
 		protected int places_no_discapacitats;
 		protected int places_discapacitats;
-		//protected ArrayList<String> places_discapacitats_controlades = new ArrayList<String>();
-		//protected ArrayList<String> places_no_discapacitats_controlades = new ArrayList<String>();
+		protected ArrayList<String> places_discapacitats_controlades = new ArrayList<String>();
+		protected ArrayList<String> places_no_discapacitats_controlades = new ArrayList<String>();
 	
 		public PRU04E05Parking_Miquel_Frau (int places_no_discapacitats, int places_discapacitats) {
 			this.places_discapacitats = places_discapacitats;
@@ -27,6 +27,7 @@ public class PRU04E05Parking_Miquel_Frau {
 			String opcio_new_ruta;
 			try {
 				DataInputStream file_reader = new DataInputStream(new FileInputStream(path));
+				
 			}
 			catch (FileNotFoundException e){
 				System.out.print(System.getProperty("line.separator")+"No s'ha trobat l'arxiu indicat als paràmetres.");
@@ -47,12 +48,16 @@ public class PRU04E05Parking_Miquel_Frau {
 								do {
 								System.out.println("La ruta que has introduit manualment("+new_ruta+") no s'ha trobat. Vols tornar a introduir-la? (S/N)");
 								opcio_new_ruta = sc_llegirMatricules.nextLine();
-								if (opcio_new_ruta.equals("N")) {
+								if (opcio_new_ruta.equals("S")) {
+									repetir_newRouteConfirmacion = false;
+								}
+								else if (opcio_new_ruta.equals("N")) {
+									System.out.println("D'acord. Tornant al menú principal.");
 									repetir = false;
 									repetir_newRoute = false;
 									repetir_newRouteConfirmacion = false;
 								}
-								else if (!(opcio_new_ruta.equals("N")) && !(opcio_new_ruta.equals("S"))) {
+								else {
 									System.out.println("No has introduit cap opció correcta. Has d'introduir \"S\" o \"N\"");
 								}
 								} while (repetir_newRouteConfirmacion);

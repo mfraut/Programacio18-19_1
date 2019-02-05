@@ -12,8 +12,8 @@ public class PRU04E05Parking_Miquel_Frau {
 		
 		protected int places_no_discapacitats;
 		protected int places_discapacitats;
-		protected ArrayList<String> places_discapacitats_controlades = new ArrayList<String>();
-		protected ArrayList<String> places_no_discapacitats_controlades = new ArrayList<String>();
+		//protected ArrayList<String> places_discapacitats_controlades = new ArrayList<String>();
+		//protected ArrayList<String> places_no_discapacitats_controlades = new ArrayList<String>();
 	
 		public PRU04E05Parking_Miquel_Frau (int places_no_discapacitats, int places_discapacitats) {
 			this.places_discapacitats = places_discapacitats;

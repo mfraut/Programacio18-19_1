@@ -2,6 +2,7 @@ package pru05;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -10,12 +11,15 @@ import java.io.FileOutputStream;
 
 public class PRU04E05Parking_Miquel_Frau {
 		
+		protected final int places_no_discapacitats_constant;
+		protected final int places_discapacitats_constant;
 		protected int places_no_discapacitats;
 		protected int places_discapacitats;
-		protected ArrayList<String> places_discapacitats_controlades = new ArrayList<String>();
-		protected ArrayList<String> places_no_discapacitats_controlades = new ArrayList<String>();
+		protected HashMap<Integer, String> parking = new HashMap<Integer, String>(100);
 	
 		public PRU04E05Parking_Miquel_Frau (int places_no_discapacitats, int places_discapacitats) {
+			this.places_discapacitats_constant = places_discapacitats;
+			this.places_no_discapacitats_constant = places_no_discapacitats;
 			this.places_discapacitats = places_discapacitats;
 			this.places_no_discapacitats = places_no_discapacitats;
 		}
@@ -74,9 +78,16 @@ public class PRU04E05Parking_Miquel_Frau {
 					}
 				} while (repetir); 
 			}
+			catch (IndexOutOfBoundsException a) {
+				System.out.println("No has introduit cap argument. ");
+			}
 		}
 		
 		public int entraCotxe(String matricula) throws Exception{
+			
+			if (comprovarMatricula(matricula)) {
+				parking.put(this.places_discapacitats_constant, matricula);
+			}
 			
 		}
 		
@@ -104,12 +115,57 @@ public class PRU04E05Parking_Miquel_Frau {
 			
 		}
 		
+		private boolean comprovarMatricula(String matricula) {
+			
+			boolean matricula_comprobada = true;
+			
+			try {
+				int[] matricula_numeros = new int[4];
+				char[] matricula_letras = new char[3];
+				
+				
+				for (int i = 0; i<matricula_numeros.length; i++) {
+					String matricula_numeros_char="";
+					matricula_numeros_char += matricula.charAt(i);
+					matricula_numeros[i] = Integer.parseInt(matricula_numeros_char);
+				}
+
+				for (int i = matricula_numeros.length; i<matricula.length(); i++) {
+					matricula_letras[i-(matricula_numeros.length)] = matricula.charAt(i); 
+				}
+				
+				for (int i = 0; i<matricula_numeros.length; i++) {
+
+					System.out.println(matricula_numeros[i]);
+				}
+				
+				for (int i = matricula_numeros.length; i<matricula.length(); i++) {
+					System.out.println(matricula_letras[i-(matricula_numeros.length)]); 
+				}
+			}
+			catch(NumberFormatException e) {
+				
+				System.out.println("La matrícula no és correcta (no compleix el format 0000AAA)");
+				matricula_comprobada = false;
+				
+			}
+			catch (ArrayIndexOutOfBoundsException r) {
+				
+				System.out.println("La matrícula no és correcta (hi ha més digits dels que el format indica (format: 0000AAA))");
+				matricula_comprobada = false;
+				
+			}
+			
+			return matricula_comprobada;
+			
+		}
+		
 		public static void main(String[] args) {
 			Scanner sc = new Scanner(System.in);
 			PRU04E05Parking_Miquel_Frau parking = new PRU04E05Parking_Miquel_Frau(100, 5);
 			
 			boolean repeat_main = true;
-			
+			String matricula;
 			int option;
 			
 			System.out.print("Benvingut a ParkingManager V.1.0.");
@@ -122,13 +178,15 @@ public class PRU04E05Parking_Miquel_Frau {
 				
 				switch(option) {
 					case 1: 
-					try {
 						parking.llegirMatricules(args[0]);
-					} catch (Exception e) {
-						System.out.println("I do not understand dis.");
-					}
 					break;
 					case 2:
+						
+						boolean repetir_entrada_cotxe = true;
+						do {
+							
+						} while(repetir_entrada_cotxe);
+						
 					case 3:
 					case 4:
 					case 5:

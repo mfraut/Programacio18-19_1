@@ -133,15 +133,6 @@ public class PRU04E05Parking_Miquel_Frau {
 				for (int i = matricula_numeros.length; i<matricula.length(); i++) {
 					matricula_letras[i-(matricula_numeros.length)] = matricula.charAt(i); 
 				}
-				
-				for (int i = 0; i<matricula_numeros.length; i++) {
-
-					System.out.println(matricula_numeros[i]);
-				}
-				
-				for (int i = matricula_numeros.length; i<matricula.length(); i++) {
-					System.out.println(matricula_letras[i-(matricula_numeros.length)]); 
-				}
 			}
 			catch(NumberFormatException e) {
 				
@@ -160,7 +151,7 @@ public class PRU04E05Parking_Miquel_Frau {
 			
 		}
 		
-		public static void main(String[] args) {
+		public static void main(String[] args) throws Exception {
 			Scanner sc = new Scanner(System.in);
 			PRU04E05Parking_Miquel_Frau parking = new PRU04E05Parking_Miquel_Frau(100, 5);
 			

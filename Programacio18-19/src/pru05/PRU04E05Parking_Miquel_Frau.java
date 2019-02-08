@@ -131,7 +131,14 @@ public class PRU04E05Parking_Miquel_Frau {
 				}
 
 				for (int i = matricula_numeros.length; i<matricula.length(); i++) {
-					matricula_letras[i-(matricula_numeros.length)] = matricula.charAt(i); 
+					if (matricula.charAt(i) >= 65 || matricula.charAt(i) <= 90) {
+						matricula_letras[i-(matricula_numeros.length)] = matricula.charAt(i);
+					}
+					else {
+						throw new NumberFormatException("Se ha colocado un carácter que no es una letra mayúscula donde los tres espacios de las letras.");
+					}
+					
+					
 				}
 			}
 			catch(NumberFormatException e) {
@@ -150,6 +157,47 @@ public class PRU04E05Parking_Miquel_Frau {
 			return matricula_comprobada;
 			
 		}
+		
+		/*try {
+			String matricula = "1310KFT";
+			int[] matricula_numeros = new int[4];
+			char[] matricula_letras = new char[3];
+			
+			
+			for (int i = 0; i<matricula_numeros.length; i++) {
+				String matricula_numeros_char="";
+				matricula_numeros_char += matricula.charAt(i);
+				matricula_numeros[i] = Integer.parseInt(matricula_numeros_char);
+				System.out.println(matricula_numeros[i]);
+			}
+
+			for (int i = matricula_numeros.length; i<matricula.length()-1; i++) {
+				int matricula_char_int = (int)(matricula.charAt(i));
+				System.out.println(matricula_char_int);
+				if (matricula_char_int >= 65 && matricula_char_int <= 90) {
+					
+					char matricula_int_char = (char) matricula_char_int;
+					
+					matricula_letras[i-(matricula_numeros.length)] = matricula_int_char;
+					
+					System.out.println(matricula_letras[i]);
+				}
+				else {
+					throw new NumberFormatException("Se ha colocado un carácter que no es una letra mayúscula donde los tres espacios de las letras.");
+				}
+				
+				
+			}
+		}
+		catch(NumberFormatException e) {
+			
+			System.out.println("La matrícula no és correcta (no compleix el format 0000AAA)");
+			
+		}
+		catch (ArrayIndexOutOfBoundsException r) {
+			
+			System.out.println("La matrícula no és correcta (hi ha més digits dels que el format indica (format: 0000AAA))");
+		}*/
 		
 		public static void main(String[] args) throws Exception {
 			Scanner sc = new Scanner(System.in);

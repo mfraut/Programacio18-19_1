@@ -10,16 +10,12 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
 public class PRU04E05Parking_Miquel_Frau {
-		
-		protected final int places_no_discapacitats_constant;
-		protected final int places_discapacitats_constant;
+	
 		protected int places_no_discapacitats;
 		protected int places_discapacitats;
-		protected HashMap<Integer, String> parking = new HashMap<Integer, String>(100);
+		protected HashMap<Integer, String> parking = new HashMap<Integer, String>(places_no_discapacitats + places_discapacitats);
 	
 		public PRU04E05Parking_Miquel_Frau (int places_no_discapacitats, int places_discapacitats) {
-			this.places_discapacitats_constant = places_discapacitats;
-			this.places_no_discapacitats_constant = places_no_discapacitats;
 			this.places_discapacitats = places_discapacitats;
 			this.places_no_discapacitats = places_no_discapacitats;
 		}
@@ -29,64 +25,15 @@ public class PRU04E05Parking_Miquel_Frau {
 			String opcio;
 			String new_ruta;
 			String opcio_new_ruta;
-			try {
-				DataInputStream file_reader = new DataInputStream(new FileInputStream(path));
-				
-			}
-			catch (FileNotFoundException e){
-				System.out.print(System.getProperty("line.separator")+"No s'ha trobat l'arxiu indicat als paràmetres.");
-				boolean repetir = true;
-				do {
-					System.out.println(" Vols especificar una ruta fixa? (S/N)");
-					opcio = sc_llegirMatricules.nextLine();
-					if (opcio.equals("S")) {
-						boolean repetir_newRoute = true;
-						do {
-							System.out.println("Per favor, introdueix la ruta en qüestió.");
-							new_ruta = sc_llegirMatricules.nextLine();
-							try {
-								DataInputStream file_reader = new DataInputStream(new FileInputStream(new_ruta));
-							}
-							catch (FileNotFoundException a) {
-								boolean repetir_newRouteConfirmacion = true;
-								do {
-								System.out.println("La ruta que has introduit manualment("+new_ruta+") no s'ha trobat. Vols tornar a introduir-la? (S/N)");
-								opcio_new_ruta = sc_llegirMatricules.nextLine();
-								if (opcio_new_ruta.equals("S")) {
-									repetir_newRouteConfirmacion = false;
-								}
-								else if (opcio_new_ruta.equals("N")) {
-									System.out.println("D'acord. Tornant al menú principal.");
-									repetir = false;
-									repetir_newRoute = false;
-									repetir_newRouteConfirmacion = false;
-								}
-								else {
-									System.out.println("No has introduit cap opció correcta. Has d'introduir \"S\" o \"N\"");
-								}
-								} while (repetir_newRouteConfirmacion);
-								
-							}
-					}	while (repetir_newRoute);
-				}
-					else if (opcio.equals("N")) {
-						System.out.println("D'acord. Tornant al menú principal.");
-						repetir = false;
-					}
-					else {
-						System.out.println("No has introduit cap opció correcta. Has d'introduir \"S\" o \"N\"");
-					}
-				} while (repetir); 
-			}
-			catch (IndexOutOfBoundsException a) {
-				System.out.println("No has introduit cap argument. ");
-			}
 		}
 		
 		public int entraCotxe(String matricula) throws Exception{
 			
 			if (comprovarMatricula(matricula)) {
-				parking.put(this.places_discapacitats_constant, matricula);
+				
+			}
+			else {
+				throw new Exception("")
 			}
 			
 		}
@@ -104,7 +51,12 @@ public class PRU04E05Parking_Miquel_Frau {
 		}
 		
 		public int getPlacesOcupades(TipusPlacesParking tipus) {
-			
+			if (tipus.equals(TipusPlacesParking.NoDiscapacitat)) {
+				
+			}
+			else {
+				
+			}
 		}
 		
 		public int getPlacesLliures(TipusPlacesParking tipus) {
@@ -143,13 +95,11 @@ public class PRU04E05Parking_Miquel_Frau {
 			}
 			catch(NumberFormatException e) {
 				
-				System.out.println("La matrícula no és correcta (no compleix el format 0000AAA)");
 				matricula_comprobada = false;
 				
 			}
 			catch (ArrayIndexOutOfBoundsException r) {
 				
-				System.out.println("La matrícula no és correcta (hi ha més digits dels que el format indica (format: 0000AAA))");
 				matricula_comprobada = false;
 				
 			}
@@ -158,46 +108,13 @@ public class PRU04E05Parking_Miquel_Frau {
 			
 		}
 		
-		/*try {
-			String matricula = "1310KFT";
-			int[] matricula_numeros = new int[4];
-			char[] matricula_letras = new char[3];
-			
-			
-			for (int i = 0; i<matricula_numeros.length; i++) {
-				String matricula_numeros_char="";
-				matricula_numeros_char += matricula.charAt(i);
-				matricula_numeros[i] = Integer.parseInt(matricula_numeros_char);
-				System.out.println(matricula_numeros[i]);
-			}
+		private enum TipusPlacesParking {
+			NoDiscapacitat,
+			Discapacitat;
+		}
 
-			for (int i = matricula_numeros.length; i<matricula.length()-1; i++) {
-				int matricula_char_int = (int)(matricula.charAt(i));
-				System.out.println(matricula_char_int);
-				if (matricula_char_int >= 65 && matricula_char_int <= 90) {
-					
-					char matricula_int_char = (char) matricula_char_int;
-					
-					matricula_letras[i-(matricula_numeros.length)] = matricula_int_char;
-					
-					System.out.println(matricula_letras[i]);
-				}
-				else {
-					throw new NumberFormatException("Se ha colocado un carácter que no es una letra mayúscula donde los tres espacios de las letras.");
-				}
-				
-				
-			}
-		}
-		catch(NumberFormatException e) {
-			
-			System.out.println("La matrícula no és correcta (no compleix el format 0000AAA)");
-			
-		}
-		catch (ArrayIndexOutOfBoundsException r) {
-			
-			System.out.println("La matrícula no és correcta (hi ha més digits dels que el format indica (format: 0000AAA))");
-		}*/
+		
+		
 		
 		public static void main(String[] args) throws Exception {
 			Scanner sc = new Scanner(System.in);

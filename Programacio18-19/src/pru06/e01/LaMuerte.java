@@ -1,13 +1,19 @@
 package pru06.e01;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import java.awt.Color;
 
 public class LaMuerte {
+	JFrame la_muerte = new JFrame("La muerte aplication");
+	JTextField escrotir = new JTextField();
+	JOptionPane respuesta = new JOptionPane();
 	public void iniciarLaMuerte() {
-		JFrame la_muerte = new JFrame("La muerte aplication");
-		JOptionPane mensaje = new JOptionPane();
-		JOptionPane.showMessageDialog(la_muerte, "Amo a Dabyt. Att. Maiko.", "LaMuerte DabytSimulator", 1);
+		respuesta.add(escrotir);
+		escrotir.addActionListener(new Listener());
 	}
 	public static void main (String[] args) {
 		LaMuerte la_muerte = new LaMuerte();
